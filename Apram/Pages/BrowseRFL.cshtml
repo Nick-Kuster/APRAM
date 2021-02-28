@@ -1,0 +1,63 @@
+﻿@page
+@model Apram.Pages.BrowseRFLModel
+@{
+}
+
+<style>
+    td, th {
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap: normal;
+        padding: 10px;
+    }
+    input {
+        margin-right: 30px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+</style>
+<form class="form-inline" method="post" title="Search">
+    <div class="form-row">
+        <label for="AircraftType">Aircraft Type</label>
+        <input id="AircraftType" asp-for="Search.AircraftType" type="text" />
+        <label for="RequestingEntity">Requesting Entity</label>
+        <input id="RequestingEntity" asp-for="Search.RequestingEntity" type="text" />
+        <label for="PartDescription">Part Description</label>
+        <input id="PartDescription" asp-for="Search.PartDescription" type="text" />
+    </div>
+    <div class="form-row">
+        <label for="serial">Serial</label>
+        <input id="serial" asp-for="Search.PartSerialNumber" type="text" />
+        <input type="submit" asp-page-handler="search" />
+    </div>
+</form>
+<h1>Browse Request for Leases</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFL" asp-route-search="@Model.SearchString" asp-route-orderBy="PartSerialNumber" asp-route-desc="@(!Model.Descending)">Part Number</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFL" asp-route-search="@Model.SearchString" asp-route-orderBy="AircraftType" asp-route-desc="@(!Model.Descending)">Aircraft Type</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFL" asp-route-search="@Model.SearchString" asp-route-orderBy="PartDescription" asp-route-desc="@(!Model.Descending)">Description</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFL" asp-route-search="@Model.SearchString" asp-route-orderBy="RequestingEntity" asp-route-desc="@(!Model.Descending)">Requestor</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFL" asp-route-search="@Model.SearchString" asp-route-orderBy="DateInserted" asp-route-desc="@(!Model.Descending)">RFL Created</a></th>
+        <th>Needed By</th>
+        <th>Needed Until</th>
+        <th>Quantity Needed</th>
+    </tr>
+    @foreach (var rfl in Model.RFLs)
+    {
+        <tr>
+            <td>@rfl.PartNumber</td>
+            <td>@rfl.AircraftType</td>
+            <td>@rfl.PartDescription</td>
+            <td>@rfl.RequestingEntity</td>
+            <td>@rfl.DateInserted.ToShortDateString()</td>
+            <td>@rfl.DateNeededStart.ToShortDateString()</td>
+            <td>@rfl.DateNeededEnd.ToShortDateString()</td>
+            <td>@rfl.Quantity</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/RespondToRFL" asp-route-ID="@rfl.ID">Respond</a></td>
+        </tr>
+    }
+</table>

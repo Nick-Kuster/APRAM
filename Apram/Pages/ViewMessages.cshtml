@@ -1,0 +1,79 @@
+﻿@page
+@model Apram.Pages.ViewMessagesModel
+@{
+}
+<style>
+    /* Style inputs */
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        /* Add a background color to the submit button on mouse-over */
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    tr{
+        border: 2px solid black;
+    }
+    td{
+        padding: 20px;
+    }
+    table{
+        width: 65vw;
+    }
+</style>
+<table>
+
+    @foreach (var message in Model.Messages)
+    {
+        <tr>
+            <td>
+                <div>@message.SendDate - @message.Sender: <br /></div>
+                <div style="text-align:center; padding-top: 10px">@message.Body</div>
+            </td>
+        </tr>
+    }
+
+    @if (Model.ShowRespondDiv)
+    {
+        <tr>
+            <td>
+                <form method="post">
+                    <label for="notes">Message</label> <a href="#"></a>
+                    <input id="notes" asp-for="MessageToAdd.Body" type="text" />
+                    <input id="" asp-for="MessageToAdd.Sender" value="@User.Identity.Name" type="hidden" />
+                    <input id="" asp-for="MessageToAdd.Type" value="@Model.MessagesType" type="hidden" />
+                    <input id="" asp-for="MessageToAdd.ParentID" value="@Model.ParentID" type="hidden" />
+                    <input type="submit" value="Send Response"/>
+                </form>
+            </td>
+        </tr>     
+    }
+    else
+    {
+       <tr>
+           <td style="text-align: center">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ViewMessages" asp-route-ID="@Model.ParentID" asp-route-showRespondDiv="true">Respond</a>
+           </td>
+       </tr>
+    }
+</table>

@@ -1,0 +1,28 @@
+﻿@page
+@model Apram.Pages.ViewRFQResponsesModel
+@{
+}
+<style>
+    td, th {
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap: normal;
+        padding: 10px;
+    }
+</style>
+<h1>Responses to Your RFQ:</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>User</th>
+        <th>Quote</th>
+        <th>Conversation</th>
+    </tr>
+    @foreach (var rfqResponse in Model.ResponseList)
+    {
+        <tr>
+            <td>@rfqResponse.ResponderEntity</td>
+            <td>@rfqResponse.QuotePrice</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/ViewMessages" asp-route-ID="@rfqResponse.ID">@rfqResponse.MessageCount</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,54 @@
+﻿@page
+@model Apram.Pages.ViewPartListingModel
+@{
+}
+<style>
+    td {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    th {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    h3 {
+        margin-top: 20px
+    }
+</style>
+<h1>Part Details</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <td>Serial Number</td>
+        <td>@Model.Part.SerialNumber</td>
+    </tr>
+    <tr>
+        <td>Aircraft Type</td>
+        <td>@Model.Part.AircraftType</td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>@Model.Part.Description</td>
+    </tr>
+</table>
+<h3>Maintenance Records</h3>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>Date</th>
+        <th>Miles</th>
+        <th>Type</th>
+        <th>Provider</th>
+    </tr>
+    @foreach (var record in Model.MaintenanceRecords)
+    {
+        <tr>
+            <td>@record.Date</td>
+            <td>@record.Miles</td>
+            <td>@record.Type</td>
+            <td>@record.MaintenanceProvider</td>
+        </tr>
+    }
+</table>

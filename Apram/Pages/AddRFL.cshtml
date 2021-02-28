@@ -1,0 +1,64 @@
+﻿@page
+@using Apram.Abstractions.Data
+
+@model Apram.Pages.AddRFLModel
+@{
+}
+<style>
+    /* Style inputs */
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        /* Add a background color to the submit button on mouse-over */
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+</style>
+<h1 >Add RFL</h1>
+<form method="post">
+    <label for="serial">Part</label> <a href="#"></a>
+    <input id="serial" asp-for="RFLToAdd.PartNumber" type="text" />
+    <label for="AircraftType">Aircraft Type</label> <a href="#"></a>
+    <input id="AircraftType" asp-for="RFLToAdd.AircraftType" type="text" />
+    <label for="description">Description</label>
+    <input id="description" asp-for="RFLToAdd.PartDescription" type="text" /><br /><br />
+    <label for="quantity">Quantity Needed: </label>
+    <input id="quantity" asp-for="RFLToAdd.Quantity" type="number" /><br/><br/>
+    <label for="dateFrom">Requesting Date From: </label>
+    <input id="dateFrom" asp-for="RFLToAdd.DateNeededStart" type="date" />
+    <label for="dateTo">Requesting Date To: </label>
+    <input id="dateTo" asp-for="RFLToAdd.DateNeededEnd" type="date" />    
+    <input type="hidden" asp-for="RFLToAdd.RequestingEntity" value="@User.Identity.Name"/>
+    <input type="hidden" asp-for="RFLToAdd.DateInserted" value="@DateTime.Now"/>
+    <input type="submit" />
+</form>
+@if (Model.ShowSuccessStatus)
+{
+    @if (Model.Success)
+    {
+        <h1 class="bg-success">RFL Created Successfully!</h1>
+    }
+    else
+    {
+        <h1 class="bg-danger">Error while uploading RFL!</h1>
+    }
+}

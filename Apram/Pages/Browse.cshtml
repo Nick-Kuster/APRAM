@@ -1,0 +1,59 @@
+﻿@page
+@using Apram.Domain.Messages
+@model Apram.Pages.BrowseModel
+@{
+}
+<style>
+    td, th{
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap:normal;
+        padding: 10px;
+    }
+    input {
+        margin-right: 30px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+</style>
+<form class="form-inline" method="post" title="Search">
+    <div class="form-row">
+        <label for="AircraftType">Aircraft Type</label>
+        <input id="AircraftType" asp-for="Search.AircraftType" type="text" />
+        <label for="RequestingEntity">Selling Entity</label>
+        <input id="RequestingEntity" asp-for="Search.SellingEntity" type="text" />
+        <label for="PartDescription">Part Description</label>
+        <input id="PartDescription" asp-for="Search.Description" type="text" />
+    </div>
+    <div class="form-row">
+        <label for="PartDescription">Serial Number</label>
+        <input id="PartDescription" asp-for="Search.SerialNumber" type="text" />
+        <input type="submit" asp-page-handler="search" />
+    </div>
+</form>
+<h1>Browse Inventory</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/Browse" asp-route-search="@Model.SearchString" asp-route-orderBy="SerialNumber" asp-route-desc="@(!Model.Descending)">Serial Number</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/Browse" asp-route-search="@Model.SearchString" asp-route-orderBy="AircraftType" asp-route-desc="@(!Model.Descending)">Aircraft Type</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/Browse" asp-route-search="@Model.SearchString" asp-route-orderBy="Description" asp-route-desc="@(!Model.Descending)">Description</a></th>
+        <th>Image</th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/Browse" asp-route-search="@Model.SearchString" asp-route-orderBy="SellingEntity" asp-route-desc="@(!Model.Descending)">Seller</a></th>
+    </tr>
+    @foreach (var part in Model.Parts)
+    {
+        <tr>
+            <td>
+                <a class="nav-link text-dark" asp-area="" asp-page="/ViewPart" asp-route-partID="@part.ID">@part.SerialNumber</a>
+            </td>
+            <td>@part.AircraftType</td>
+            <td>@part.Description</td>
+            <td>@part.ImageLocation</td>
+            <td>@part.SellingEntity</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/SendMessage" asp-route-type="@MessageType.Inventory" asp-route-parentID="@part.ID">Respond</a></td>
+        </tr>
+    }
+</table>

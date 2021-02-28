@@ -1,0 +1,74 @@
+﻿@page
+@model Apram.Pages.UserRequestsModel
+@{
+}
+<style>
+    td{
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid black;
+
+    }
+    th {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    h3 {
+        margin-top: 20px
+    }
+</style>
+<h1>Manage My Requests</h1>
+<h3>My RFL's</h3>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>Serial Number</th>
+        <th>Description</th>
+        <th>Requestor</th>
+        <th>RFL Created</th>
+        <th>Needed By</th>
+        <th>Needed Until</th>
+        <th>Quantity Needed</th>
+        <th>Responses</th>
+    </tr>
+    @foreach (var rfl in Model.RFLs)
+    {
+        <tr>
+            <td>@rfl.PartNumber</td>
+            <td>@rfl.PartDescription</td>
+            <td>@rfl.RequestingEntity</td>
+            <td>@rfl.DateInserted.ToShortDateString()</td>
+            <td>@rfl.DateNeededStart.ToShortDateString()</td>
+            <td>@rfl.DateNeededEnd.ToShortDateString()</td>
+            <td>@rfl.Quantity</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/ViewRFLResponses" asp-route-ID="@rfl.ID">@rfl.ResponseCount</a></td>
+        </tr>
+    }
+</table>
+<form>
+    <button type="submit" asp-page="./AddRFL" class="btn-primary">Create RFL</button>
+</form>
+
+<h3>My RFQs</h3>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>Serial Number</th>
+        <th>Description</th>
+        <th>Requestor</th>
+        <th>RFQ Created</th>
+        <th>Responses</th>
+    </tr>
+    @foreach (var rfq in Model.RFQs)
+    {
+        <tr>
+            <td>@rfq.PartNumber</td>
+            <td>@rfq.PartDescription</td>
+            <td>@rfq.RequestingEntity</td>
+            <td>@rfq.DateInserted.ToShortDateString()</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/ViewRFQResponses" asp-route-ID="@rfq.ID">@rfq.ResponseCount</a></td>
+        </tr>
+    }
+</table>
+<form>
+    <button type="submit" asp-page="./AddRFQ" class="btn-primary">Create RFQ</button>
+</form>

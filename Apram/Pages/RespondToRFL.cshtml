@@ -1,0 +1,45 @@
+﻿@page
+@model Apram.Pages.RespondToRFLModel
+@{
+}
+<style>
+    /* Style inputs */
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        /* Add a background color to the submit button on mouse-over */
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+</style>
+<h1>Respond To Request: @Model.RFLID</h1>
+
+<form method="post">
+    <label for="notes">Message</label> <a href="#"></a>
+    <input id="notes" asp-for="MessageToAdd.Body" type="text" />
+    <label for="quote">Quote</label> <a href="#"></a>
+    <input id="quote" asp-for="ResponseToAdd.QuotePrice" type="number" />
+    <input id="requestId" asp-for="ResponseToAdd.RequestID" value="@Model.RFLID" type="hidden" />
+    <input id="" asp-for="ResponseToAdd.ResponderEntity" value="@User.Identity.Name" type="hidden" />
+    <input id="" asp-for="MessageToAdd.Sender" value="@User.Identity.Name" type="hidden" />
+    <input type="submit" />
+</form>

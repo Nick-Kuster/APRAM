@@ -1,0 +1,55 @@
+﻿@page
+@model Apram.Pages.RFQModel
+@{
+}
+<style>
+    td, th {
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap: normal;
+        padding: 10px;
+    }
+    input {
+        margin-right: 30px;
+        margin-bottom: 10px;
+    }
+    label {
+        margin-right: 10px;
+    }
+</style>
+<form class="form-inline" method="post" title="Search">
+    <div class="form-row">
+        <label for="AircraftType">Aircraft Type</label>
+        <input id="AircraftType" asp-for="Search.AircraftType" type="text" />
+        <label for="RequestingEntity">Requesting Entity</label>
+        <input id="RequestingEntity" asp-for="Search.RequestingEntity" type="text" />
+        <label for="PartDescription">Part Description</label>
+        <input id="PartDescription" asp-for="Search.PartDescription" type="text" />
+    </div>
+    <div class="form-row">
+        <label for="serial">Serial</label>
+        <input id="serial" asp-for="Search.PartSerialNumber" type="text" />
+        <input type="submit" asp-page-handler="search" />
+    </div>
+</form>
+<h1>Browse Request for Quotes</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFQ" asp-route-search="@Model.SearchString" asp-route-orderBy="PartSerialNumber" asp-route-desc="@(!Model.Descending)">Part Number</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFQ" asp-route-search="@Model.SearchString" asp-route-orderBy="AircraftType" asp-route-desc="@(!Model.Descending)">Aircraft Type</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFQ" asp-route-search="@Model.SearchString" asp-route-orderBy="PartDescription" asp-route-desc="@(!Model.Descending)">Description</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFQ" asp-route-search="@Model.SearchString" asp-route-orderBy="RequestingEntity" asp-route-desc="@(!Model.Descending)">Requestor</a></th>
+        <th><a class="nav-link text-dark" asp-area="" asp-page="/BrowseRFQ" asp-route-search="@Model.SearchString" asp-route-orderBy="DateInserted" asp-route-desc="@(!Model.Descending)">RFQ Created</a></th>
+    </tr>
+    @foreach (var rfq in Model.RFQs)
+    {
+        <tr>
+            <td>@rfq.PartNumber</td>
+            <td>@rfq.AircraftType</td>
+            <td>@rfq.PartDescription</td>
+            <td>@rfq.RequestingEntity</td>
+            <td>@rfq.DateInserted.ToShortDateString()</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/RespondToRFQ" asp-route-ID="@rfq.ID">Respond</a></td>
+        </tr>
+    }
+</table>
