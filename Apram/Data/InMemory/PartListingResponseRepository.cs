@@ -39,7 +39,7 @@ namespace Apram.Data.InMemory
 
         public List<PartListingResponse> GetAllResponsesByPartListingID(Guid rflID)
         {
-            return Responses.Where(x => x.RequestID == rflID).ToList();
+            return Responses.Where(x => x.PartListingID == rflID).ToList();
         }
 
         public PartListingResponse GetResponseByID(Guid id)
@@ -49,7 +49,7 @@ namespace Apram.Data.InMemory
 
         public int GetResponseCountForPartListing(Guid rflID)
         {
-            return Responses.Count(x => x.RequestID == rflID);
+            return Responses.Count(x => x.PartListingID == rflID);
         }
     }
 }

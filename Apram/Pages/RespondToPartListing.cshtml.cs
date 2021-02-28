@@ -38,7 +38,7 @@ namespace Apram.Pages
             try
             {
                 _responseRepo.AddResponse(ResponseToAdd);
-                MessageToAdd.Type = MessageType.RFL;
+                MessageToAdd.Type = MessageType.Inventory;
                 MessageToAdd.ParentID = ResponseToAdd.ID;
                 _messageRepo.AddMessage(MessageToAdd);
                 TempData["Message"] = "You have responded to the RFL";

@@ -1,5 +1,5 @@
 ﻿@page
-@model Apram.Pages.ViewMessagesModel
+@model Apram.Pages.ConversationModel
 @{
 }
 <style>
@@ -72,7 +72,7 @@
     {
        <tr>
            <td style="text-align: center">
-                <a class="nav-link text-dark" asp-area="" asp-page="/ViewMessages" asp-route-ID="@Model.ParentID" asp-route-showRespondDiv="true">Respond</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Conversation" asp-route-ID="@Model.ParentID" asp-route-showRespondDiv="true">Respond</a>
            </td>
        </tr>
     }

@@ -36,7 +36,7 @@
 <form method="post">
     <label for="notes">Message</label> <a href="#"></a>
     <input id="notes" asp-for="MessageToAdd.Body" type="text" />
-    <input id="requestId" asp-for="ResponseToAdd.RequestID" value="@Model.PartListingID" type="hidden" />
+    <input id="requestId" asp-for="ResponseToAdd.PartListingID" value="@Model.PartListingID" type="hidden" />
     <input id="" asp-for="ResponseToAdd.ResponderEntity" value="@User.Identity.Name" type="hidden" />
     <input id="" asp-for="MessageToAdd.Sender" value="@User.Identity.Name" type="hidden" />
     <input type="submit" />

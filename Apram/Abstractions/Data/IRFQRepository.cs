@@ -9,6 +9,7 @@ namespace Apram.Abstractions.Data
     public interface IRFQRepository
     {
         List<RFQ> GetAllRFQs();
+        RFQ GetRFQByID(Guid id);
         void InsertRFQ(RFQ rfq);
     }
 }

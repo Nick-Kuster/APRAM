@@ -10,5 +10,6 @@ namespace Apram.Domain.RFQ
         public string ResponderEntity { get; set; }
         public string RequestorEntity { get; set; }
         public decimal QuotePrice { get; set; }
+        public RFQ ParentRFQ { get; set; }
     }
 }

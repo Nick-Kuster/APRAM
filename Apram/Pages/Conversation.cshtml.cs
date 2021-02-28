@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace Apram.Pages
 {
-    public class ViewMessagesModel : PageModel
+    public class ConversationModel : PageModel
     {
         private readonly IMessageRepository _messageRepo;
 
-        public ViewMessagesModel(IMessageRepository messageRepo)
+        public ConversationModel(IMessageRepository messageRepo)
         {
             _messageRepo = messageRepo;
         }
@@ -36,7 +36,7 @@ namespace Apram.Pages
         public IActionResult OnPost()
         {
             _messageRepo.AddMessage(MessageToAdd);
-            return RedirectToPage("ViewMessages", new { id = MessageToAdd.ParentID });
+            return RedirectToPage("Conversation", new { id = MessageToAdd.ParentID });
         }
     }
 }

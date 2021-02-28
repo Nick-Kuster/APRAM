@@ -28,5 +28,10 @@ namespace Apram.Data.InMemory
             rfq.ID = Guid.NewGuid();
             rfqList.Add(rfq);
         }
+
+        public RFQ GetRFQByID(Guid id)
+        {
+            return rfqList.FirstOrDefault(x => x.ID == id);
+        }
     }
 }
