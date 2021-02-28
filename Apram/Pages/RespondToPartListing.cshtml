@@ -1,5 +1,5 @@
 ﻿@page
-@model Apram.Pages.RespondToListing
+@model Apram.Pages.RespondToPartListing
 @{
 }
 <style>
@@ -31,13 +31,13 @@
             background-color: #45a049;
         }
 </style>
-<h1>Send Message To: </h1>
+<h1>Respond To Part Listing: @Model.PartListingID</h1>
 
 <form method="post">
-    <label for="message">Message</label> <a href="#"></a>
-    <input id="message" asp-for="Message.Body" type="text" />
-    <input id="" asp-for="Message.Sender" value="@User.Identity.Name" type="hidden" />
-    <input id="" asp-for="Message.Sender" type="hidden" />
-    <input id="" asp-for="Message.ParentID" type="hidden" />
+    <label for="notes">Message</label> <a href="#"></a>
+    <input id="notes" asp-for="MessageToAdd.Body" type="text" />
+    <input id="requestId" asp-for="ResponseToAdd.RequestID" value="@Model.PartListingID" type="hidden" />
+    <input id="" asp-for="ResponseToAdd.ResponderEntity" value="@User.Identity.Name" type="hidden" />
+    <input id="" asp-for="MessageToAdd.Sender" value="@User.Identity.Name" type="hidden" />
     <input type="submit" />
 </form>

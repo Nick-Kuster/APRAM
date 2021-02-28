@@ -1,0 +1,36 @@
+﻿@page
+@model Apram.Pages.ViewUserPartListingsModel
+@{
+}
+
+<style>
+    td, th {
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap: normal;
+        padding: 10px;
+    }
+</style>
+<h1>My Inventory</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>Serial Number</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Responses</th>
+        <th>View | Edit | Delete</th>
+    </tr>
+    @foreach (var part in Model.Parts)
+    {
+<tr>
+    <td>@part.SerialNumber</td>
+    <td>@part.Description</td>
+    <td>@part.ImageLocation</td>
+    <td><a class="nav-link text-dark" asp-area="" asp-page="/ViewPartListingResponses" asp-route-ID="@part.ID">@part.ResponseCount</a></td>
+    <td>
+        <a class="nav-link text-dark" asp-area="" asp-page="/ViewPartListing" asp-route-partID="@part.ID">View</a>
+        | Edit | Delete
+    </td>
+</tr>
+    }
+</table>

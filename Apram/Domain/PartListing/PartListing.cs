@@ -6,6 +6,7 @@ namespace Apram.Domain.PartListing
     {
         public Guid ID { get; set; }
         public string SellingEntity { get; set; }
+        public int ResponseCount { get; set; }
         public string AircraftType { get; set; }
         public string SerialNumber { get; set; }
         public string Description { get; set; }

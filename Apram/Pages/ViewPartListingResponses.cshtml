@@ -1,0 +1,26 @@
+﻿@page
+@model Apram.Pages.ViewPartListingResponsesModel
+@{
+}
+<style>
+    td, th {
+        border: 1px solid black;
+        max-width: 300px;
+        text-wrap: normal;
+        padding: 10px;
+    }
+</style>
+<h1>Responses to Your Part Listing:</h1>
+<table style="border: 1px solid black;" id="parts">
+    <tr>
+        <th>User</th>
+        <th>Conversation</th>
+    </tr>
+    @foreach (var rflResponse in Model.ResponseList)
+    {
+        <tr>
+            <td>@rflResponse.ResponderEntity</td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/ViewMessages" asp-route-ID="@rflResponse.ID">@rflResponse.MessageCount</a></td>
+        </tr>
+    }
+</table>

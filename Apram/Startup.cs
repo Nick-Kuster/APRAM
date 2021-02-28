@@ -48,6 +48,7 @@ namespace Apram
             services.AddSingleton<IRFQRepository, RFQRepository>();
             services.AddSingleton<IRFQResponseRepository, RFQResponseRepository>();
             services.AddSingleton<IRFLResponseRepository, RFLResponseRepository>();
+            services.AddSingleton<IPartListingResponseRepository, PartListingResponseRepository>();
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddSingleton<IMaintenanceRecordRepository, MaintenanceRecordRepository>();
         }

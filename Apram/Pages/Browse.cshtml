@@ -47,13 +47,13 @@
     {
         <tr>
             <td>
-                <a class="nav-link text-dark" asp-area="" asp-page="/ViewPart" asp-route-partID="@part.ID">@part.SerialNumber</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/ViewPartListing" asp-route-partID="@part.ID">@part.SerialNumber</a>
             </td>
             <td>@part.AircraftType</td>
             <td>@part.Description</td>
             <td>@part.ImageLocation</td>
             <td>@part.SellingEntity</td>
-            <td><a class="nav-link text-dark" asp-area="" asp-page="/SendMessage" asp-route-type="@MessageType.Inventory" asp-route-parentID="@part.ID">Respond</a></td>
+            <td><a class="nav-link text-dark" asp-area="" asp-page="/RespondToPartListing" asp-route-parentID="@part.ID">Respond</a></td>
         </tr>
     }
 </table>

@@ -9,19 +9,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Apram.Pages
 {
-    public class ViewUserPartListingModel : PageModel
+    public class ViewUserPartListingsModel : PageModel
     {
         public List<PartListing> Parts { get; set; }
 
         private readonly IPartListingRepository _repo;
+        private readonly IPartListingResponseRepository _responseRepo;
 
-        public ViewUserPartListingModel(IPartListingRepository repo)
+        public ViewUserPartListingsModel(IPartListingRepository repo, IPartListingResponseRepository responseRepo)
         {
             _repo = repo;
+            _responseRepo = responseRepo;
         }
         public void OnGet()
         {
             Parts = _repo.GetPartListings().Where(x => x.SellingEntity == User.Identity.Name).ToList();
+
+            foreach(var part in Parts)
+            {
+                part.ResponseCount = _responseRepo.GetResponseCountForPartListing(part.ID);
+            }
         }
     }
 }
